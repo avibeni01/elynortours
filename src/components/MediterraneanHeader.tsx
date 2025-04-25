@@ -108,6 +108,13 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
               >
                 Promotions Hôtels
               </button>
+              {/* Add FAQ Button */}
+              <button
+                onClick={() => navigateTo('faq')}
+                className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 transition-colors"
+              >
+                FAQ
+              </button>
             </div>
           </nav>
           
@@ -139,6 +146,13 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
               className="px-3 py-1.5 rounded-md text-xs font-medium bg-white text-fuchsia-500 border border-fuchsia-500 hover:bg-fuchsia-50 transition-colors mr-2"
             >
               Hôtels
+            </button>
+            {/* Add FAQ Button Mobile */}
+            <button
+              onClick={() => navigateTo('faq')}
+              className="px-3 py-1.5 rounded-md text-xs font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 transition-colors"
+            >
+              FAQ
             </button>
             
             <button
@@ -185,6 +199,10 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
           <a href="#mediterranean-transport" className="text-gray-700 hover:text-orange-500 py-1" onClick={toggleMenu}>
             Transport
           </a>
+          {/* Add FAQ Link Mobile Menu */}
+          <button onClick={() => { navigateTo('faq'); toggleMenu(); }} className="text-gray-700 hover:text-orange-500 py-1 text-left w-full">
+            FAQ
+          </button>
           {/* Mobile App Switcher - Already handled outside the menu */}
         </nav>
       </div>

@@ -11,6 +11,7 @@ import AirportCarRental from './components/AirportCarRental';
 import SEOHead from './components/SEOHead';
 import HotelPromotionsPage from './components/HotelPromotionsPage';
 import HomePage from './components/HomePage';
+import FAQ from './components/FAQ'; // Import the FAQ component
 
 function App() {
   const [showMediterranean, setShowMediterranean] = useState(false);
@@ -18,6 +19,7 @@ function App() {
   const [showHotelPromotions, setShowHotelPromotions] = useState(false);
   const [showHomePage, setShowHomePage] = useState(true);
   const [showDeadSea, setShowDeadSea] = useState(false);
+  const [showFAQ, setShowFAQ] = useState(false); // Add state for FAQ
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -53,6 +55,14 @@ function App() {
       } else if (hash === '' || hash === '#') {
         // Pas de hash ou hash vide = page d'accueil
         setShowHomePage(true);
+        setShowMediterranean(false);
+        setShowCarRental(false);
+        setShowHotelPromotions(false);
+        setShowDeadSea(false);
+        setShowFAQ(false); // Ensure FAQ is hidden
+      } else if (hash.includes('faq')) { // Add condition for FAQ
+        setShowFAQ(true);
+        setShowHomePage(false);
         setShowMediterranean(false);
         setShowCarRental(false);
         setShowHotelPromotions(false);
@@ -146,13 +156,20 @@ function App() {
         }
       });
     });
-    
+
     return () => {
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', () => {});
+        // Clean up event listeners - ensure the function reference is the same or use a named function
+        // For simplicity, this might need refactoring if issues arise, but let's keep it for now.
+        // A better approach would be to define the click handler function outside and reuse it.
+        // anchor.removeEventListener('click', theNamedClickHandler); 
+
+
+        
+        // avavant y avait : anchor.removeEventListener('click', () => {});
       });
     };
-  }, [showMediterranean, showCarRental, showDeadSea, showHomePage]);
+  }, [showMediterranean, showCarRental, showDeadSea, showHomePage, showFAQ]); // Add showFAQ to dependency array
 
   return (
     <div className="min-h-screen bg-white">
@@ -229,6 +246,11 @@ function App() {
           <SafetySection />
           <TransportationSection />
         </>
+      )}
+
+      {showFAQ && ( // Add conditional rendering for FAQ
+        <FAQ /> 
+        // FAQ component already includes Header, Footer, and SEOHead
       )}
     </div>
   );

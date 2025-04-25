@@ -69,6 +69,13 @@ const HomePage = () => {
               >
                 Promotions Hôtels
               </button>
+              {/* Add FAQ Button */}
+              <button
+                onClick={() => navigateTo('faq')}
+                className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 transition-colors"
+              >
+                FAQ
+              </button>
             </div>
           </nav>
         </div>
@@ -80,6 +87,10 @@ const HomePage = () => {
               <a href="#services" className="text-gray-700 hover:text-orange-500 transition-colors py-2 border-b border-gray-100">Services</a>
               <a href="#destinations" className="text-gray-700 hover:text-orange-500 transition-colors py-2 border-b border-gray-100">Destinations</a>
               <a href="#contact" className="text-gray-700 hover:text-orange-500 transition-colors py-2 border-b border-gray-100">Contact</a>
+              {/* Add FAQ Link Mobile Menu */}
+              <button onClick={() => { navigateTo('faq'); setMobileMenuOpen(false); }} className="text-gray-700 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 text-left w-full">
+                FAQ
+              </button>
               
               <div className="pt-2 grid grid-cols-2 gap-2">
                 <button 
