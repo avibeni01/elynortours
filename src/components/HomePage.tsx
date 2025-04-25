@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { Hotel, Car, Umbrella, Phone, Mail, MapPin, Star, ChevronRight, Users } from 'lucide-react';
-import HotelBookingForm from '../App3'; // Correction de l'importation
+import { Hotel, Car, Umbrella, Phone, Mail, MapPin, Star, ChevronRight, Users, Menu, X } from 'lucide-react';
+import HotelBookingForm from './Formulaire.tsx'; 
 import logoImg from '/LOGO.webp';
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('hotel');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navigateTo = (hash: string) => {
+    window.location.hash = hash;
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-md">
+      {/* Header avec navigation */}
+      <header className="bg-white shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
           <div className="flex items-center mb-4 md:mb-0">
             <img src={logoImg} alt="Elynor Tours" className="h-12 mr-3" />
@@ -19,13 +26,89 @@ const HomePage = () => {
             </div>
           </div>
           
-          <nav className="flex items-center space-x-6">
+          {/* Menu mobile */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-gray-700 hover:text-orange-500"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+          
+          {/* Menu Desktop */}
+          <nav className="hidden md:flex items-center space-x-6">
             <a href="#services" className="text-gray-700 hover:text-orange-500 transition-colors">Services</a>
             <a href="#destinations" className="text-gray-700 hover:text-orange-500 transition-colors">Destinations</a>
             <a href="#contact" className="text-gray-700 hover:text-orange-500 transition-colors">Contact</a>
-            <a href="#booking" className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">Réserver</a>
+            
+            {/* Navigation vers les autres applications */}
+            <div className="pl-6 border-l border-gray-200 flex space-x-3">
+              <button 
+                onClick={() => navigateTo('mediterranean-beaches')}
+                className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-rose-500 border border-rose-500 hover:bg-rose-50 transition-colors"
+              >
+                Plages Méditerranée
+              </button>
+              <button 
+                onClick={() => navigateTo('dead-sea-beaches')}
+                className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-orange-500 border border-orange-500 hover:bg-orange-50 transition-colors"
+              >
+                Plages Mer Morte
+              </button>
+              <button 
+                onClick={() => navigateTo('car-rental')}
+                className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-blue-500 border border-blue-500 hover:bg-blue-50 transition-colors"
+              >
+                Location Voiture
+              </button>
+              <button 
+                onClick={() => navigateTo('hotel-promotions')}
+                className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-fuchsia-500 border border-fuchsia-500 hover:bg-fuchsia-50 transition-colors"
+              >
+                Promotions Hôtels
+              </button>
+            </div>
           </nav>
         </div>
+        
+        {/* Menu Mobile Dropdown */}
+        {mobileMenuOpen && (
+          <div className="container mx-auto px-4 pb-4 md:hidden">
+            <div className="flex flex-col space-y-3">
+              <a href="#services" className="text-gray-700 hover:text-orange-500 transition-colors py-2 border-b border-gray-100">Services</a>
+              <a href="#destinations" className="text-gray-700 hover:text-orange-500 transition-colors py-2 border-b border-gray-100">Destinations</a>
+              <a href="#contact" className="text-gray-700 hover:text-orange-500 transition-colors py-2 border-b border-gray-100">Contact</a>
+              
+              <div className="pt-2 grid grid-cols-2 gap-2">
+                <button 
+                  onClick={() => navigateTo('mediterranean-beaches')}
+                  className="px-3 py-2 rounded-md text-sm font-medium bg-white text-rose-500 border border-rose-500 hover:bg-rose-50 transition-colors"
+                >
+                  Plages Méditerranée
+                </button>
+                <button 
+                  onClick={() => navigateTo('dead-sea-beaches')}
+                  className="px-3 py-2 rounded-md text-sm font-medium bg-white text-orange-500 border border-orange-500 hover:bg-orange-50 transition-colors"
+                >
+                  Plages Mer Morte
+                </button>
+                <button 
+                  onClick={() => navigateTo('car-rental')}
+                  className="px-3 py-2 rounded-md text-sm font-medium bg-white text-blue-500 border border-blue-500 hover:bg-blue-50 transition-colors"
+                >
+                  Location Voiture
+                </button>
+                <button 
+                  onClick={() => navigateTo('hotel-promotions')}
+                  className="px-3 py-2 rounded-md text-sm font-medium bg-white text-fuchsia-500 border border-fuchsia-500 hover:bg-fuchsia-50 transition-colors"
+                >
+                  Promotions Hôtels
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
       
       {/* Hero Section */}
@@ -72,9 +155,12 @@ const HomePage = () => {
               <p className="text-gray-600 mb-4">
                 Nous proposons une sélection des meilleurs hôtels d'Israël à des tarifs négociés. Profitez d'un service personnalisé et d'une assistance 24/7.
               </p>
-              <a href="#booking" className="text-orange-500 font-medium flex items-center hover:text-orange-600">
-                Réserver un hôtel <ChevronRight size={18} className="ml-1" />
-              </a>
+              <button 
+                onClick={() => navigateTo('hotel-promotions')} 
+                className="text-orange-500 font-medium flex items-center hover:text-orange-600"
+              >
+                Voir nos promotions hôtelières <ChevronRight size={18} className="ml-1" />
+              </button>
             </div>
             
             <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
@@ -85,22 +171,36 @@ const HomePage = () => {
               <p className="text-gray-600 mb-4">
                 Explorez Israël en toute liberté avec notre service de location de voitures. Des véhicules récents et bien entretenus à des prix compétitifs.
               </p>
-              <a href="#" className="text-rose-500 font-medium flex items-center hover:text-rose-600">
-                Louer une voiture <ChevronRight size={18} className="ml-1" />
-              </a>
+              <button 
+                onClick={() => navigateTo('car-rental')} 
+                className="text-rose-500 font-medium flex items-center hover:text-rose-600"
+              >
+                Voir nos offres de location <ChevronRight size={18} className="ml-1" />
+              </button>
             </div>
             
             <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
               <div className="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <Umbrella className="text-blue-500" size={28} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Excursions Guidées</h3>
+              <h3 className="text-xl font-semibold mb-2">Plages & Excursions</h3>
               <p className="text-gray-600 mb-4">
-                Découvrez les merveilles d'Israël avec nos guides experts. Excursions en français, circuits personnalisés et visites thématiques.
+                Découvrez les plus belles plages d'Israël ou participez à nos excursions guidées. Nous vous proposons des expériences uniques pour tous les goûts.
               </p>
-              <a href="#" className="text-blue-500 font-medium flex items-center hover:text-blue-600">
-                Voir nos excursions <ChevronRight size={18} className="ml-1" />
-              </a>
+              <div className="flex flex-col space-y-2">
+                <button 
+                  onClick={() => navigateTo('mediterranean-beaches')} 
+                  className="text-blue-500 font-medium flex items-center hover:text-blue-600"
+                >
+                  Plages Méditerranée <ChevronRight size={18} className="ml-1" />
+                </button>
+                <button 
+                  onClick={() => navigateTo('dead-sea-beaches')} 
+                  className="text-orange-500 font-medium flex items-center hover:text-orange-600"
+                >
+                  Plages Mer Morte <ChevronRight size={18} className="ml-1" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -151,30 +251,38 @@ const HomePage = () => {
                   <Car size={48} className="text-gray-400 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Location de Voiture</h3>
                   <p className="text-gray-600 mb-4">
-                    Notre module de location de voiture sera bientôt disponible.
+                    Découvrez notre sélection de véhicules et nos conseils pour la location.
                   </p>
-                  <a 
-                    href="#contact" 
+                  <button 
+                    onClick={() => navigateTo('car-rental')} 
                     className="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
                   >
-                    Contactez-nous pour réserver
-                  </a>
+                    Voir nos offres de location
+                  </button>
                 </div>
               )}
               
               {activeTab === 'tour' && (
                 <div className="py-12 text-center">
                   <Umbrella size={48} className="text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Excursions Guidées</h3>
+                  <h3 className="text-xl font-semibold mb-2">Plages et Excursions</h3>
                   <p className="text-gray-600 mb-4">
-                    Notre module de réservation d'excursions sera bientôt disponible.
+                    Explorez les plus belles plages d'Israël et découvrez nos excursions.
                   </p>
-                  <a 
-                    href="#contact" 
-                    className="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
-                  >
-                    Contactez-nous pour réserver
-                  </a>
+                  <div className="flex flex-col sm:flex-row justify-center gap-4 mt-4">
+                    <button 
+                      onClick={() => navigateTo('mediterranean-beaches')} 
+                      className="px-6 py-3 bg-rose-500 text-white font-semibold rounded-lg hover:bg-rose-600 transition-colors"
+                    >
+                      Plages Méditerranée
+                    </button>
+                    <button 
+                      onClick={() => navigateTo('dead-sea-beaches')} 
+                      className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
+                    >
+                      Plages Mer Morte
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -227,9 +335,12 @@ const HomePage = () => {
                 <p className="text-gray-600 mb-4">
                   La ville qui ne dort jamais, avec ses plages, sa vie nocturne et son architecture Bauhaus.
                 </p>
-                <a href="#" className="text-orange-500 font-medium flex items-center hover:text-orange-600">
+                <button
+                  onClick={() => navigateTo('mediterranean-beaches')} 
+                  className="text-orange-500 font-medium flex items-center hover:text-orange-600"
+                >
                   Explorer <ChevronRight size={18} className="ml-1" />
-                </a>
+                </button>
               </div>
             </div>
             
@@ -248,9 +359,12 @@ const HomePage = () => {
                 <p className="text-gray-600 mb-4">
                   Le point le plus bas de la Terre, célèbre pour ses propriétés thérapeutiques.
                 </p>
-                <a href="#" className="text-orange-500 font-medium flex items-center hover:text-orange-600">
+                <button
+                  onClick={() => navigateTo('dead-sea-beaches')} 
+                  className="text-orange-500 font-medium flex items-center hover:text-orange-600"
+                >
                   Explorer <ChevronRight size={18} className="ml-1" />
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -468,6 +582,85 @@ const HomePage = () => {
                 </a>
               </div>
             </div>
+            
+            {/* Navigation Footer */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Navigation</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#services" className="text-gray-400 hover:text-white transition-colors">
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a href="#destinations" className="text-gray-400 hover:text-white transition-colors">
+                    Destinations
+                  </a>
+                </li>
+                <li>
+                  <a href="#booking" className="text-gray-400 hover:text-white transition-colors">
+                    Réservation
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Plages Footer */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Plages</h3>
+              <ul className="space-y-2">
+                <li>
+                  <button 
+                    onClick={() => navigateTo('mediterranean-beaches')}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Plages Méditerranée
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => navigateTo('dead-sea-beaches')}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Plages Mer Morte
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
+            {/* Autres Services Footer */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Autres Services</h3>
+              <ul className="space-y-2">
+                <li>
+                  <button 
+                    onClick={() => navigateTo('car-rental')}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Location de voiture
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => navigateTo('hotel-promotions')}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Promotions hôtelières
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-700 mt-12 pt-6 text-center">
+            <p className="text-gray-500 text-sm">
+              &copy; {new Date().getFullYear()} Elynor Tours. Tous droits réservés.
+            </p>
           </div>
         </div>
       </footer>

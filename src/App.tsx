@@ -10,35 +10,53 @@ import MediterraneanApp from './MediterraneanApp';
 import AirportCarRental from './components/AirportCarRental';
 import SEOHead from './components/SEOHead';
 import HotelPromotionsPage from './components/HotelPromotionsPage';
+import HomePage from './components/HomePage';
 
 function App() {
-  const [showMediterranean, setShowMediterranean] = useState(true);
+  const [showMediterranean, setShowMediterranean] = useState(false);
   const [showCarRental, setShowCarRental] = useState(false);
   const [showHotelPromotions, setShowHotelPromotions] = useState(false);
+  const [showHomePage, setShowHomePage] = useState(true);
+  const [showDeadSea, setShowDeadSea] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
 
       // Faire défiler vers le haut
-       window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       if (hash.includes('car-rental')) {
         setShowCarRental(true);
         setShowMediterranean(false);
         setShowHotelPromotions(false);
+        setShowHomePage(false);
+        setShowDeadSea(false);
       } else if (hash.includes('dead-sea')) {
         setShowMediterranean(false);
         setShowCarRental(false);
         setShowHotelPromotions(false);
+        setShowHomePage(false);
+        setShowDeadSea(true);
       } else if (hash.includes('hotel-promotions')) {
         setShowMediterranean(false);
         setShowCarRental(false);
         setShowHotelPromotions(true);
-      } else {
+        setShowHomePage(false);
+        setShowDeadSea(false);
+      } else if (hash.includes('mediterranean')) {
         setShowMediterranean(true);
         setShowCarRental(false);
         setShowHotelPromotions(false);
+        setShowHomePage(false);
+        setShowDeadSea(false);
+      } else if (hash === '' || hash === '#') {
+        // Pas de hash ou hash vide = page d'accueil
+        setShowHomePage(true);
+        setShowMediterranean(false);
+        setShowCarRental(false);
+        setShowHotelPromotions(false);
+        setShowDeadSea(false);
       }
     };
 
@@ -65,6 +83,8 @@ function App() {
         if (href.includes('car-rental')) {
           setShowCarRental(true);
           setShowMediterranean(false);
+          setShowHomePage(false);
+          setShowDeadSea(false);
           window.history.pushState({}, '', '#car-rental');
           window.scrollTo({ top: 0, behavior: 'smooth' });
           return;
@@ -73,6 +93,8 @@ function App() {
         if (href.includes('mediterranean') && !showMediterranean) {
           setShowMediterranean(true);
           setShowCarRental(false);
+          setShowHomePage(false);
+          setShowDeadSea(false);
           window.history.pushState({}, '', '#mediterranean-beaches');
           setTimeout(() => {
             const target = document.querySelector('#mediterranean-beaches');
@@ -86,9 +108,11 @@ function App() {
           return;
         }
         
-        if (href.includes('dead-sea') && showMediterranean) {
+        if (href.includes('dead-sea') && !showDeadSea) {
           setShowMediterranean(false);
           setShowCarRental(false);
+          setShowHomePage(false);
+          setShowDeadSea(true);
           window.history.pushState({}, '', '#dead-sea-beaches');
           setTimeout(() => {
             const target = document.querySelector('#best-beaches');
@@ -99,6 +123,16 @@ function App() {
               });
             }
           }, 100);
+          return;
+        }
+
+        if (href === '#' || href === '') {
+          setShowHomePage(true);
+          setShowMediterranean(false);
+          setShowCarRental(false);
+          setShowDeadSea(false);
+          window.history.pushState({}, '', '#');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           return;
         }
         
@@ -118,11 +152,15 @@ function App() {
         anchor.removeEventListener('click', () => {});
       });
     };
-  }, [showMediterranean, showCarRental]);
+  }, [showMediterranean, showCarRental, showDeadSea, showHomePage]);
 
   return (
     <div className="min-h-screen bg-white">
-      {showCarRental ? (
+      {showHomePage && (
+        <HomePage />
+      )}
+
+      {showCarRental && (
         <>
           <SEOHead
             title="Location de Voiture à l'Aéroport Ben Gourion - Guide Complet | Elynor Tours"
@@ -134,7 +172,9 @@ function App() {
           <Header />
           <AirportCarRental />
         </>
-      ) : showHotelPromotions ? (
+      )}
+
+      {showHotelPromotions && (
         <>
           <SEOHead
             title="Promotions Hôtelières Exceptionnelles en Israël | Elynor Tours"
@@ -146,7 +186,9 @@ function App() {
           <Header />
           <HotelPromotionsPage />
         </>
-      ) : showMediterranean ? (
+      )}
+
+      {showMediterranean && (
         <>
           <SEOHead
             title="Les 20 Plus Belles Plages de la Méditerranée Israélienne - Guide Complet | Elynor Tours"
@@ -159,12 +201,15 @@ function App() {
           <MediterraneanApp
             onSwitchApp={() => {
               setShowMediterranean(false);
+              setShowDeadSea(true);
               window.history.pushState({}, '', '#dead-sea-beaches');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
         </>
-      ) : (
+      )}
+
+      {showDeadSea && (
         <>
           <SEOHead
             title="Les 10 Plus Belles Plages de la Mer Morte - Guide Complet | Elynor Tours"

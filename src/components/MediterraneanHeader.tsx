@@ -24,6 +24,13 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Fonction pour naviguer vers une page
+  const navigateTo = (hash: string) => {
+    window.location.hash = hash;
+    window.dispatchEvent(new HashChangeEvent('hashchange'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -32,8 +39,8 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <a href="#">
+          <div className="flex items-center cursor-pointer" onClick={() => navigateTo('')}>
+            <a>
               <img
                 src={logoImg}
                 alt="Elynor Tours Logo"
@@ -72,12 +79,16 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
 
             {/* App Switcher Buttons */}
             <div className="flex items-center space-x-3 ml-6 border-l pl-4 border-gray-200">
+              {/* Bouton Accueil */}
               <button
-                onClick={() => {
-                  window.location.hash = 'car-rental';
-                  window.dispatchEvent(new HashChangeEvent('hashchange'));
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
+                onClick={() => navigateTo('')}
+                className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 transition-colors"
+              >
+                Accueil
+              </button>
+              
+              <button
+                onClick={() => navigateTo('car-rental')}
                 className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-blue-500 border border-blue-500 hover:bg-blue-50 transition-colors"
               >
                 Location Voiture
@@ -92,11 +103,7 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
                 Plages Mer Morte
               </button>
               <button
-                onClick={() => {
-                  window.location.hash = 'hotel-promotions';
-                  window.dispatchEvent(new HashChangeEvent('hashchange'));
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
+                onClick={() => navigateTo('hotel-promotions')}
                 className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-fuchsia-500 border border-fuchsia-500 hover:bg-fuchsia-50 transition-colors"
               >
                 Promotions Hôtels
@@ -106,13 +113,17 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
           
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
+            {/* Bouton Accueil pour Mobile */}
+            <button
+              onClick={() => navigateTo('')}
+              className="px-3 py-1.5 rounded-md text-xs font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 transition-colors mr-2"
+            >
+              Accueil
+            </button>
+            
             {/* App Switcher Buttons for Mobile */}
             <button
-              onClick={() => {
-                window.location.hash = 'car-rental';
-                window.dispatchEvent(new HashChangeEvent('hashchange'));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              onClick={() => navigateTo('car-rental')}
               className="px-3 py-1.5 rounded-md text-xs font-medium bg-white text-blue-500 border border-blue-500 hover:bg-blue-50 transition-colors mr-2"
             >
               Location
@@ -124,11 +135,7 @@ const MediterraneanHeader: React.FC<MediterraneanHeaderProps> = ({ onSwitchApp }
               Mer Morte
             </button>
             <button
-              onClick={() => {
-                window.location.hash = 'hotel-promotions';
-                window.dispatchEvent(new HashChangeEvent('hashchange'));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
+              onClick={() => navigateTo('hotel-promotions')}
               className="px-3 py-1.5 rounded-md text-xs font-medium bg-white text-fuchsia-500 border border-fuchsia-500 hover:bg-fuchsia-50 transition-colors mr-2"
             >
               Hôtels

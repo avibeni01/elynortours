@@ -11,9 +11,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { Toaster, toast } from 'react-hot-toast';
 
 // Liste des pays pour la location de voiture
-import RENTAL_COUNTRIES from './liste-pays.json';
-import vehicles from './liste_vehicules_images.json';
-import stations from './resultatsStations.json';
+import RENTAL_COUNTRIES from '../liste-pays.json';
+import vehicles from '../liste_vehicules_images.json';
+import stations from '../resultatsStations.json';
 
 // Fonction utilitaire pour le suivi des événements Facebook Pixel
 const trackFbEvent = (eventName: string, params = {}) => {
@@ -144,7 +144,6 @@ const countryOptions = RENTAL_COUNTRIES
 
 
 function App() {
-
   // Custom filter function for react-select
   const filterCountryOptions = (option: { label: string; value: string }, inputValue: string) => {
     const lowerInput = inputValue.toLowerCase();
