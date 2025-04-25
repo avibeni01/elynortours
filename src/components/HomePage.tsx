@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Hotel, Car, Umbrella, Phone, Mail, MapPin, Star, ChevronRight, Users } from 'lucide-react';
-import HotelBookingForm from './App';
+import HotelBookingForm from '../App3'; // Correction de l'importation
 import logoImg from '/LOGO.webp';
 
 const HomePage = () => {
@@ -468,9 +468,11 @@ const HomePage = () => {
                 </a>
               </div>
             </div>
+          </div>
         </div>
       </footer>
     </div>
   );
 };
-export default HomePage;    
+
+export default HomePage;
