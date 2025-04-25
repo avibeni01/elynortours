@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Hotel, Car, Umbrella, Phone, Mail, MapPin, Star, ChevronRight, Users, Menu, X } from 'lucide-react';
-import HotelBookingForm from './Formulaire.tsx'; 
+import { App as BookingFormContent } from './Formulaire.tsx'; // Importer le contenu du formulaire directement
 import logoImg from '/LOGO.webp';
 
 const HomePage = () => {
@@ -242,23 +242,15 @@ const HomePage = () => {
             <div className="p-6">
               {activeTab === 'hotel' && (
                 <div className="max-h-[800px] overflow-auto">
-                  <HotelBookingForm />
+                  {/* ici on utilise directement le contenu du formulaire sans l'importer en entier */}
+                  <BookingFormContent initialActiveTab="hotel" />
                 </div>
               )}
               
               {activeTab === 'car' && (
-                <div className="py-12 text-center">
-                  <Car size={48} className="text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Location de Voiture</h3>
-                  <p className="text-gray-600 mb-4">
-                    Découvrez notre sélection de véhicules et nos conseils pour la location.
-                  </p>
-                  <button 
-                    onClick={() => navigateTo('car-rental')} 
-                    className="inline-block px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors"
-                  >
-                    Voir nos offres de location
-                  </button>
+                <div className="max-h-[800px] overflow-auto">
+                  {/* Utilisation du formulaire en mode location de voiture */}
+                  <BookingFormContent initialActiveTab="car" />
                 </div>
               )}
               
@@ -377,6 +369,7 @@ const HomePage = () => {
         </div>
       </section>
       
+      {/* Reste du contenu inchangé... */}
       {/* Testimonials */}
       <section className="py-16 bg-orange-50">
         <div className="container mx-auto px-4">
