@@ -124,7 +124,7 @@ const HomePage = () => {
       </header>
       
       {/* Hero Section */}
-      <section className="relative h-[70vh] bg-cover bg-center" style={{ backgroundImage: 'url(https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)' }}>
+      <section className="relative h-[50vh] bg-cover bg-center" style={{ backgroundImage: 'url(https://elynortours.com/wp-content/uploads/2023/05/eleynor-tour-voyage-location.webp)' }}>
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/70 to-gray-900/40"></div>
         <div className="relative h-full flex items-center">
           <div className="container mx-auto px-4">
@@ -153,77 +153,6 @@ const HomePage = () => {
         </div>
       </section>
       
-      {/* Services Section */}
-      <section id="services" className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800">Nos Services</h2>
-            <p className="text-gray-600 mt-2">Une gamme complète de services pour votre séjour. </p>
-            <p className="text-gray-600 mt-2">Découvrez nos services de réservation d'hôtels, location de voitures. Les meilleurs plans en exclusivité.</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                <Hotel className="text-orange-500" size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Réservation d'Hôtels</h3>
-              <p className="text-gray-600 mb-4">
-                Grâce à notre vaste réseau d’hôtels, nous sommes certains de pouvoir trouver l’hébergement idéal pour tous les goûts et toutes les préférences. 
-                Faites-nous confiance pour vous offrir une expérience de réservation d’hôtel sans faille qui dépassera vos attentes.
-              </p>
-              <button 
-                onClick={() => navigateTo('hotel-promotions')} 
-                className="text-orange-500 font-medium flex items-center hover:text-orange-600"
-              >
-                Voir nos promotions hôtelières <ChevronRight size={18} className="ml-1" />
-              </button>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-rose-100 rounded-lg flex items-center justify-center mb-4">
-                <Car className="text-rose-500" size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Location de Voitures</h3>
-              <p className="text-gray-600 mb-4">
-                Nous sommes fiers d’offrir à nos clients une vaste gamme de véhicules neufs de haute qualité qui répondent à leurs besoins et à leur budget. 
-                Notre sélection comprend des véhicules de toutes catégories, des voitures de sport aux berlines, des SUV aux camions, et tout ce qui se trouve 
-                entre les deux.
-              </p>
-              <button 
-                onClick={() => navigateTo('car-rental')} 
-                className="text-rose-500 font-medium flex items-center hover:text-rose-600"
-              >
-                Voir nos offres de location <ChevronRight size={18} className="ml-1" />
-              </button>
-            </div>
-            
-            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <Umbrella className="text-blue-500" size={28} />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Plages & Excursions</h3>
-              <p className="text-gray-600 mb-4">
-                Découvrez les plus belles plages d'Israël ou participez à nos excursions guidées. Nous vous proposons des expériences uniques pour tous les goûts.
-              </p>
-              <div className="flex flex-col space-y-2">
-                <button 
-                  onClick={() => navigateTo('mediterranean-beaches')} 
-                  className="text-blue-500 font-medium flex items-center hover:text-blue-600"
-                >
-                  Plages Méditerranée <ChevronRight size={18} className="ml-1" />
-                </button>
-                <button 
-                  onClick={() => navigateTo('dead-sea-beaches')} 
-                  className="text-orange-500 font-medium flex items-center hover:text-orange-600"
-                >
-                  Plages Mer Morte <ChevronRight size={18} className="ml-1" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       
       {/* Booking Section */}
       <section id="booking" className="py-16 bg-blue-50">
@@ -301,6 +230,78 @@ const HomePage = () => {
         </div>
       </section>
       
+      {/* Services Section */}
+      <section id="services" className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800">Nos Services</h2>
+            <p className="text-gray-600 mt-2">Une gamme complète de services pour votre séjour. </p>
+            <p className="text-gray-600 mt-2">Découvrez nos services de réservation d'hôtels, location de voitures. Les meilleurs plans en exclusivité.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                <Hotel className="text-orange-500" size={28} />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Réservation d'Hôtels</h3>
+              <p className="text-gray-600 mb-4">
+                Grâce à notre vaste réseau d’hôtels, nous sommes certains de pouvoir trouver l’hébergement idéal pour tous les goûts et toutes les préférences. 
+                Faites-nous confiance pour vous offrir une expérience de réservation d’hôtel sans faille qui dépassera vos attentes.
+              </p>
+              <button 
+                onClick={() => navigateTo('hotel-promotions')} 
+                className="text-orange-500 font-medium flex items-center hover:text-orange-600"
+              >
+                Voir nos promotions hôtelières <ChevronRight size={18} className="ml-1" />
+              </button>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-rose-100 rounded-lg flex items-center justify-center mb-4">
+                <Car className="text-rose-500" size={28} />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Location de Voitures</h3>
+              <p className="text-gray-600 mb-4">
+                Nous sommes fiers d’offrir à nos clients une vaste gamme de véhicules neufs de haute qualité qui répondent à leurs besoins et à leur budget. 
+                Notre sélection comprend des véhicules de toutes catégories, des voitures de sport aux berlines, des SUV aux camions, et tout ce qui se trouve 
+                entre les deux.
+              </p>
+              <button 
+                onClick={() => navigateTo('car-rental')} 
+                className="text-rose-500 font-medium flex items-center hover:text-rose-600"
+              >
+                Voir nos offres de location <ChevronRight size={18} className="ml-1" />
+              </button>
+            </div>
+            
+            <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                <Umbrella className="text-blue-500" size={28} />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Plages & Excursions</h3>
+              <p className="text-gray-600 mb-4">
+                Découvrez les plus belles plages d'Israël. Nous vous proposons des expériences uniques pour tous les goûts.
+              </p>
+              <div className="flex flex-col space-y-2">
+                <button 
+                  onClick={() => navigateTo('mediterranean-beaches')} 
+                  className="text-blue-500 font-medium flex items-center hover:text-blue-600"
+                >
+                  Plages Méditerranée <ChevronRight size={18} className="ml-1" />
+                </button>
+                <button 
+                  onClick={() => navigateTo('dead-sea-beaches')} 
+                  className="text-orange-500 font-medium flex items-center hover:text-orange-600"
+                >
+                  Plages Mer Morte <ChevronRight size={18} className="ml-1" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Destinations Section */}
       <section id="destinations" className="py-16">
         <div className="container mx-auto px-4">
