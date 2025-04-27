@@ -3,6 +3,10 @@ import { Hotel, Car, Umbrella, Phone, Mail, MapPin, Star, ChevronRight, Users, M
 import { App as BookingFormContent } from './Formulaire.tsx'; // Importer le contenu du formulaire directement
 import logoImg from '/LOGO.webp';
 import Footer from './Footer';
+import jeruImg from '../immages/jeru.jpg';
+import tlvimg from '../immages/telaviv.jpg';
+import mermorteimg from '../immages/meremorte.jpg';
+import videoHomepage from '../immages/video-homepage.mov';
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('hotel');
@@ -125,6 +129,14 @@ const HomePage = () => {
       
       {/* Hero Section */}
       <section className="relative h-[50vh] bg-cover bg-center" style={{ backgroundImage: 'url(https://elynortours.com/wp-content/uploads/2023/05/eleynor-tour-voyage-location.webp)' }}>
+      {/* <section className="relative h-[50vh]">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src={videoHomepage}
+          autoPlay
+          loop
+          muted
+        ></video> */}
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/70 to-gray-900/40"></div>
         <div className="relative h-full flex items-center">
           <div className="container mx-auto px-4">
@@ -312,7 +324,7 @@ const HomePage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-              <div className="h-48 bg-cover bg-center" style={{ backgroundImage: 'url(https://images.pexels.com/photos/2044434/pexels-photo-2044434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)' }}></div>
+                <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${jeruImg})` }}></div>
               <div className="p-5">
                 <h3 className="text-xl font-semibold mb-2">Jérusalem</h3>
                 <div className="flex items-center mb-2">
@@ -324,7 +336,7 @@ const HomePage = () => {
                   <span className="ml-2 text-sm text-gray-500">5.0 (238 avis)</span>
                 </div>
                 <p className="text-gray-600 mb-4">
-                  La ville sainte aux trois religions, riche en histoire et en culture.
+                  La ville sainte, riche en histoire et en culture.
                 </p>
                 <a href="#" className="text-orange-500 font-medium flex items-center hover:text-orange-600">
                   Explorer <ChevronRight size={18} className="ml-1" />
@@ -333,8 +345,8 @@ const HomePage = () => {
             </div>
             
             <div className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-              <div className="h-48 bg-cover bg-center" style={{ backgroundImage: 'url(https://images.pexels.com/photos/1710732/pexels-photo-1710732.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)' }}></div>
-              <div className="p-5">
+              <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${tlvimg})` }}></div>
+            <div className="p-5">
                 <h3 className="text-xl font-semibold mb-2">Tel Aviv</h3>
                 <div className="flex items-center mb-2">
                   <Star size={16} className="text-yellow-500" fill="currentColor" />
@@ -357,7 +369,7 @@ const HomePage = () => {
             </div>
             
             <div className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-              <div className="h-48 bg-cover bg-center" style={{ backgroundImage: 'url(https://images.pexels.com/photos/3937174/pexels-photo-3937174.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)' }}></div>
+            <div className="h-48 bg-cover bg-center" style={{ backgroundImage: `url(${mermorteimg})` }}></div>
               <div className="p-5">
                 <h3 className="text-xl font-semibold mb-2">Mer Morte</h3>
                 <div className="flex items-center mb-2">
